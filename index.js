@@ -14,6 +14,7 @@ import {
     Dimensions,
     Text,
     ViewPropTypes as RNViewPropTypes,
+    TouchableWithoutFeedback,
 } from 'react-native'
 
 import PropTypes from 'prop-types';
@@ -104,16 +105,18 @@ export default class Toast extends Component {
         }
 
         const view = this.state.isShow ?
-            <View
-                style={[styles.container, { top: pos }]}
-                pointerEvents="none"
-            >
-                <Animated.View
-                    style={[styles.content, { opacity: this.state.opacityValue }, this.props.style]}
+            <TouchableWithoutFeedback onPress={this.callback} >
+                <View
+                    style={[styles.container, { top: pos }]}
+                    pointerEvents="auto"
                 >
-                    {React.isValidElement(this.state.text) ? this.state.text : <Text style={this.props.textStyle}>{this.state.text}</Text>}
-                </Animated.View>
-            </View> : null;
+                    <Animated.View
+                        style={[styles.content, { opacity: this.state.opacityValue }, this.props.style]}
+                    >
+                        {React.isValidElement(this.state.text) ? this.state.text : <Text style={this.props.textStyle}>{this.state.text}</Text>}
+                    </Animated.View>
+                </View>
+            </TouchableWithoutFeedback> : null;
         return view;
     }
 }
