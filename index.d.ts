@@ -13,6 +13,7 @@ declare module "react-native-easy-toast" {
     positionValue?: number;
     fadeInDuration?: number;
     fadeOutDuration?: number;
+    defaultCloseDelay?: number;
     opacity?: number;
   }
   export default class Toast extends Component<ToastProps> {
